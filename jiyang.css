@@ -3,3 +3,23 @@ h1#title {
   color: green;
   font-size: 300%;
 }
+body
+{
+font-size: 75%
+font-family: verdana,arial,'sans serif';
+background-color: $fffff0;
+color: #000080;
+margin: 10px;
+}
+
+h1 {font-size: 200%;}
+h2 {font-size: 140%;}
+h3 {font-size: 110%;}
+
+th {background-color: #add8e6;}
+
+ul {list-style: circle;}
+ol {list-style: upper-roman;}
+
+a:link {color: #000080;}
+a:hover {color: red;}
