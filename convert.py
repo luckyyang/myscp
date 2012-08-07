@@ -2,7 +2,6 @@
 
 """This command use to import date from 2012-01-01 to your current date into a file with format csv/excel.
 
-usage: python --format [excel|csv] --output filename
 """
 
 import csv
@@ -10,7 +9,8 @@ import sys
 import getopt
 import datetime
 
-def
+def usage():
+    print "usage: python %s --format [excel|csv] --output filename" %sys.argv[0]
 
 def main():
     try:
@@ -25,6 +25,7 @@ def main():
     for o, a in opts:
         if o in ("-h", "--help"):
             print __doc__;
+            usage()
             sys.exit(0);
         elif o in ("-f", "--format"):
             outputFormat = a;
@@ -39,7 +40,7 @@ def main():
     firstDateThisYear = datetime.date(currentYear, 1, 1)
     tempDate = firstDateThisYear
 
-    csvFile = open('test.xls', 'wb')
+    csvFile = open(outputFileName, 'wb')
 
     CSVFIELDS = ['#', 'Year', 'Month', 'Day']
 
