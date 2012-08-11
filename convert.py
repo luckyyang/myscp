@@ -8,6 +8,9 @@ import csv
 import sys
 import getopt
 import datetime
+from xlrd import open_workbook,cellname
+from tempfile import TemporaryFile
+from xlwt import Workbook
 
 def usage():
     print "usage: python %s --format [excel|csv] --output filename" %sys.argv[0]
@@ -47,6 +50,42 @@ def main():
     writer = csv.writer(csvFile)
 
     writer.writerow(CSVFIELDS)
+
+
+
+    book = Workbook()
+    sheet1 = book.add_sheet('Sheet 1')
+
+    printDate = []
+    today = datetime.date.today()
+    printDate = str(today).split('-')
+    print printDate
+
+    book.add_sheet('Sheet 2')
+    sheet1.write(0,0,'A1')
+    sheet1.write(0,1,'B1')
+    row1 = sheet1.row(1)
+    row1.write(0,'A2')
+    row1.write(1,'B2')
+    sheet1.col(0).width = 3000
+    book.save('format.xls')
+    book.save(TemporaryFile())
+
+    print datetime.date.today()
+
+    #book = open_workbook('data.xls')
+    book = open_workbook("format.xls")
+    sheet = book.sheet_by_index(0)
+    print sheet.name
+    print sheet.nrows
+    print sheet.ncols
+    for row_index in range(sheet.nrows):
+        for col_index in range(sheet.ncols):
+            print cellname(row_index,col_index),'-',
+                print sheet.cell(row_index,col_index).value
+
+
+
 
     index = 1
 
